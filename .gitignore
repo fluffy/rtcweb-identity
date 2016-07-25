@@ -1,24 +1,17 @@
-# Compiled Object files, Static and Dynamic libs (Shared Objects)
-*.o
-*.a
-*.so
-
-# Folders
-_obj
-_test
-
-# Architecture specific extensions/prefixes
-*.[568vq]
-[568vq].out
-
-*.cgo1.go
-*.cgo2.c
-_cgo_defun.c
-_cgo_gotypes.go
-_cgo_export.*
-
-_testmain.go
-
-*.exe
-*.test
-*.prof
+bower_components/
+server
+cert.pem
+key.pem
+draft-jennings-stir-rtcweb-identity*.xml
+draft-jennings-stir-rtcweb-identity*.html
+draft-jennings-stir-rtcweb-identity*.txt
+draft-jennings-stir-rtcweb-identity*.pdf
+*.png
+*.svg
+batik-rasterizer-1.8.jar
+ladder
+lib
+test.cert
+test.cert.txt
+test.csr
+test.key

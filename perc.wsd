@@ -1,0 +1,55 @@
+title Call Flow for PERC with Passport Identity
+set autonumber true
+
+
+participant _ as NA1
+participant _ as NA2
+participant Conf IdP as IdpC
+participant KMF/KDD as KMF
+participant MDD as MDD
+participant Spark as Focus
+participant Alice as A
+participant Alices IdP as IdpA
+participant Bob as B
+
+
+A <-> Focus: Start Conference Call
+Focus <-> MDD: Setup call in BA room
+Focus -> KMF: Conf on MDD with Alice@a, Bob@a, Charlie@c 
+KMF -> MDD: Setup tunnel
+KMF -> IdpC: from:ba@a to:Alice@a,Bob@a,Charlie@c fingerprints
+IdpC -> KMF: Passport-BA
+KMF -> Focus: Offer
+Focus -> A: Offer
+A -> IdpA: Gen from Alice@a to ba@a with fingerprints
+IdpA -> A : Passport-A
+A -> Focus: Answer
+Focus -> KMF: Passport-A
+Focus <-> MDD: setup ports / media
+
+dtls:A <-> MDD: DTLS Handshake (Double + EKT)
+MDD@dtls <-> KMF: .
+
+A <-> MDD: SRTP Media
+
+bJoin:B <-> Focus: Bob Joins (simular flow to above)
+Focus@bJoin <-> KMF: .
+
+KMF -> IdpC: from:ba@a to:Alice@a=ssrc1,Bob@a=sscrc2,Charlie@c ,FPs
+IdpC -> KMF: Passport-BA
+
+KMF -> Focus: Passport-BA
+Focus -> A: Passport-BA
+
+
+
+
+
+
+
+
+
+
+
+
+

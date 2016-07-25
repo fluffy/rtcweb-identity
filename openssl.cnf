@@ -1,0 +1,31 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+        
+[req_distinguished_name]
+countryName = Country Name (2 letter code)
+countryName_default = CA
+stateOrProvinceName = State or Province Name (full name)
+stateOrProvinceName_default = Albrta
+localityName = Locality Name (eg, city)
+localityName_default = Calgary
+organizationalUnitName	= Organizational Unit Name (eg, section)
+organizationalUnitName_default	= Fluffy
+commonName = Fluffy Ltd
+commonName_max	= 64
+
+[v3_req]
+# Extensions to add to a certificate request
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+
+[alt_names]
+#DNS.1 = fluffy.im
+#DNS.2 = iii.ca
+#DNS.3 = example.com
+#IP.1 = 10.1.2.3
+#email.1 = fluffy@iii.ca
+URI.1 = tel:14084219990
+
+    
