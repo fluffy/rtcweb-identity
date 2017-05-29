@@ -29,6 +29,21 @@ $(document).ready(function(){
     var configuration = { "iceServers": [] };
     var pc = new window.RTCPeerConnection(configuration);
 
+    /*
+    console.log( "step 1a" );
+    var keygenAlgorithm = { name: "RSASSA-PKCS1-v1_5",
+                        modulusLength: 2048,
+                        publicExponent: new Uint8Array([1, 0, 1]),
+                        hash: "SHA-256" };
+    // also { name: "ECDSA", namedCurve: "P-256" }
+    
+    RTCPeerConnection.generateCertificate( keygenAlgorithm ).then( function(cert) {
+        //var f =  cert.getFingerprints();
+        var s = JSON.stringify( { "new cert fingerprints": cert } )
+        console.log( s );
+    }).catch(logError);
+    */
+    
     console.log( "step 2" );
     var hint = { "otn": "14084219990", "duri": "sip:jon@example.org" };
     pc.setIdentityProvider("ks.fluffy.im:10443","passport-v1",JSON.stringify( hint ) );
