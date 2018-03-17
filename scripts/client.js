@@ -28,6 +28,7 @@ $(document).ready(function(){
     console.log( "starting 1" );
     var configuration = { "iceServers": [] };
     var pc = new window.RTCPeerConnection(configuration);
+    var pc2 = new window.RTCPeerConnection(configuration);
 
     /*
     console.log( "step 1a" );
@@ -46,7 +47,7 @@ $(document).ready(function(){
     
     console.log( "step 2" );
     var hint = { "otn": "14084219990", "duri": "sip:jon@example.org" };
-    pc.setIdentityProvider("ks.fluffy.im:10443","passport-v1",JSON.stringify( hint ) );
+    pc.setIdentityProvider("idp.fluffy.ipv.sx:10443","passport-v1",JSON.stringify( hint ) );
 
     console.log( "step 2a" );
     pc.onicecandidate = function (evt) {
@@ -60,6 +61,7 @@ $(document).ready(function(){
     };
 
     console.log( "step 3" );
+
     
     pc.onnegotiationneeded = function () {
         pc.createOffer().then(function (offer) {
@@ -68,6 +70,27 @@ $(document).ready(function(){
             .then(function () {
                 // send the offer to the other peer
                 //console.log( "INIT   " + JSON.stringify( pc.localDescription ));
+
+                console.log( "going to set up remote PC" )
+                pc2.setRemoteDescription(pc.localDescription).then(function () {
+                    console.log( "have set up remote PC" )
+
+                    pc.onpeeridentity = function(ev) {
+                        console.log("onpeeridentity event detected!");
+                    };
+                    
+                    //pc2.onpeeridentity.then( function(identity)  { 
+                    //    if (identity) {
+                    //        console.log("Identity of the peer: idp='" +         
+                    //                    identity.idp + "'; assertion='" +
+                    //                    identity.name + "'");
+                    //    }
+                    //    else {
+                    //        console.log("Identity of the peer has not been verified");
+                    //    }
+                    //} );
+                })
+                                                           
             })
             .catch(logError);
     };
@@ -78,6 +101,8 @@ $(document).ready(function(){
     console.log( "created channel");
     
     console.log( "step 5" );
+
+    
 });
 
 

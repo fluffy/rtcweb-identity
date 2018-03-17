@@ -6,9 +6,7 @@ TXT  := $(patsubst %.md,%.txt,$(SRC))
 DIF  := $(patsubst %.md,%.diff.html,$(SRC))
 PDF  := $(patsubst %.md,%.pdf,$(SRC))
 
-
-all:  $(HTML) $(TXT) 
-
+all:  $(HTML) $(TXT) server 
 
 fetch:
 	bower update

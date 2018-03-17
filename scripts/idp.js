@@ -32,8 +32,8 @@ idp.generateAssertion = function( contents, origin, userNameHint ) {
             passport.mky = contents 
             assertResult.assertion =  JSON.stringify( passport );
             assertResult.idp = {};
-            assertResult.idp.domain = origin;
-            assertResult.idp.protocol = "passport-v1";
+            assertResult.idp.domain = "idp.fluffy.ipv.sx:10433"
+            assertResult.idp.protocol = "idp.js";
             resolve( assertResult );
         } );
     return p;
@@ -55,14 +55,14 @@ if ( typeof rtcIdentityProvider != 'undefined' ) {
     // console.log( "Foo" );
     rtcIdentityProvider.register( idp );
 } else {
-    console.log( "No rtcIdentityProvider defined" );
-    var p1 = idp.generateAssertion( "foo", "my-origin", "nameHint" );
+    //console.log( "No rtcIdentityProvider defined" );
+    var p1 = idp.generateAssertion( "foo", "idp.fluffy.ipv.sx", "nameHint" );
     p1.then( function( r ) {
-        console.log( "Assertion is: " + JSON.stringify( r ) );
+        //console.log( "Assertion is: " + JSON.stringify( r ) );
 
-        var p2 = idp.validateAssertion( r , "my-origin" );
+        var p2 = idp.validateAssertion( r , "idp.fluffy.ipv.sx" );
         p2.then( function( v ) {
-            console.log( "Validation is: " + JSON.stringify( v ) );
+            //console.log( "Validation is: " + JSON.stringify( v ) );
         });
     });
 }
